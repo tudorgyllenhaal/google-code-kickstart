@@ -35,8 +35,7 @@ def Solver(numLine, hyper=[]):
 def Engine(data, hyper=[]):
     data = data[0]
     data=[item for item in data if item<=hyper[1]]
-    #data.sort()
-    data=countsort(data,0,hyper[1])
+    data.sort()
     total = 0
     times = 0
     for num in data:
@@ -46,25 +45,7 @@ def Engine(data, hyper=[]):
         else:
             times=times+1
     return times
-import itertools
 
-def countsort(data,min_val=None,max_val=None):
-    if min_val is None:
-        min_val=min(data)
-    if max_val is None:
-        max_val=max(data)
-    #data=[item for item in data if item>=min_val]
-    #data=[item for item in data if item<=max_val]
-    index=[0]*(max_val-min_val+1)
-    for item in data:
-        index[item-min_val]+=1
-    index=list(itertools.accumulate(index))
-    result=[]
-    prev=0
-    for i,item in enumerate(index):
-        result=result+([min_val+i]*(item-prev))
-        prev=item
-    return result
 
 #######################################################################
 import time
